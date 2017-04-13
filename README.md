@@ -1,3 +1,32 @@
+# INSTRUCTIONS
+
+Hi! Thanks for taking a look at my code challenge. Here's a litte instructional bit about my code:
+
+The algorithm (in scholarship_selection.py) is fairly self explanatory -- it's dynamic programming approach to computing the optimal sequence, and the main function returns a dictionary e.g. {'sequence' : [4,10,2], 'total':80} as suggested in the challenge.
+
+To use the REST API, first change this portion in your own code needed to import the scholarship_selection module (a litle hacky, I know).
+
+sys.path.insert(0,PARENT_DIRECTORY_OF_CHALLENGE)
+from challenge import scholarship_selection
+
+To serve the site, run ./app.py, then in a seperate terminal window, run:
+
+curl -i http://localhost:5000/scholarship_api/
+
+The API allows you to post a scholarship array, and get it's corresponding optimal sequence/total. Each array  is assigned an index integer at the time it is posted, which is necesary to retrieve its solution. To post a scholarship array, first store the array as a json object:
+
+{'array' : [[],...,[]]}
+
+then run the following command:
+
+curl -g -i -H Content-Type:application/json -X POST -d "$v" http://localhost:5000/scholarship_api
+
+where v is a variable where your json object is stored. This should print the json object -- note its id number. To retrieve the corresponding sequence, run:
+
+curl -i http://localhost:5000/scholarship_api/INDEX_NUMBER
+
+Thank you! Hope you find this satisfactory. Looking forward to talking soon :)
+
 # Code challenge
 
 Hi! Very excited to see what you can do. Please complete this coding challenge and submit within 7 days.    
